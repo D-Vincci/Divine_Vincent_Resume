@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vincent Divine | Creative Professional</title>
+    <style>
+        /* Import Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;500;600&display=swap');
+
+        /* CSS Variables for Theming */
+        :root {
+            --primary-color-light: #2979FF; /* Blue */
+            --secondary-color-light: #FF9100; /* Orange */
+            --bg-color-light: #F4F6F8;
+            --card-bg-light: #FFFFFF;
+            --text-color-light: #333333;
+            --heading-color-light: #1a1a1a;
+            --border-color-light: #e0e0e0;
+
+            --primary-color-dark: #448AFF; /* Lighter Blue */
+            --secondary-color-dark: #FFAB40; /* Lighter Orange */
+            --bg-color-dark: #1a1a1a;
+            --card-bg-dark: #2c2c2c;
+            --text-color-dark: #e0e0e0;
+            --heading-color-dark: #ffffff;
+            --border-color-dark: #444444;
+
+            --font-primary: 'Poppins', sans-serif;
+            --font-heading: 'Montserrat', sans-serif;
+
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+
+        /* Apply Light Theme by Default */
+        body {
+            --primary-color: var(--primary-color-light);
+            --secondary-color: var(--secondary-color-light);
+            --bg-color: var(--bg-color-light);
+            --card-bg: var(--card-bg-light);
+            --text-color: var(--text-color-light);
+            --heading-color: var(--heading-color-light);
+            --border-color: var(--border-color-light);
+        }
+
+        /* Apply Dark Theme when .dark-mode class is present */
+        body.dark-mode {
+            --primary-color: var(--primary-color-dark);
+            --secondary-color: var(--secondary-color-dark);
+            --bg-color: var(--bg-color-dark);
+            --card-bg: var(--card-bg-dark);
+            --text-color: var(--text-color-dark);
+            --heading-color: var(--heading-color-dark);
+            --border-color: var(--border-color-dark);
+        }
+
+        /* Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--heading-color);
+            margin-bottom: 0.8em;
+            transition: color var(--transition-speed) ease;
+        }
+
+        h1 { font-size: 2.8em; line-height: 1.2; color: var(--primary-color); }
+        h2 { font-size: 1.8em; color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 5px; display: inline-block; margin-top: 40px; }
+        h3 { font-size: 1.3em; color: var(--heading-color); }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease, opacity var(--transition-speed) ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            opacity: 0.8;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+            position: relative;
+            padding-left: 20px; /* Space for custom bullet */
+        }
+
+        /* Custom Bullet Points for lists */
+        section ul li::before {
+            content: '•'; /* Bullet character */
+            color: var(--secondary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1.3em; /* Position before text */
+            position: absolute;
+            font-size: 1.2em;
+        }
+
+
+        /* Header & Navigation */
+        .main-header {
+            background-color: var(--card-bg);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: background-color var(--transition-speed) ease;
+            position: relative; /* For theme toggle positioning */
+        }
+
+        .contact-info span {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+        .contact-info a {
+             margin: 0 8px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            padding: 10px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color var(--transition-speed) ease;
+        }
+
+        nav li {
+            margin: 5px 15px;
+            padding-left: 0; /* Remove default padding */
+        }
+        nav li::before {
+            content: none; /* Remove bullet */
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+         nav a:hover {
+            background-color: var(--primary-color);
+            color: var(--card-bg); /* White or light color */
+            opacity: 1;
+         }
+
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 0.9em;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+        .theme-toggle:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+
+        /* Sections Styling */
+        section {
+            background-color: var(--card-bg);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: background-color var(--transition-speed) ease, border var(--transition-speed) ease;
+            border: 1px solid var(--border-color);
+        }
+
+
+        /* Skills Section */
+        #skills ul {
+            columns: 2; /* Create two columns for skills */
+            -webkit-columns: 2;
+            -moz-columns: 2;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        #skills li {
+            margin-bottom: 10px; /* Adjust spacing for columns */
+            font-weight: 500;
+        }
+
+        /* Experience & Education Sections */
+        .job, .education-entry {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+            transition: border-color var(--transition-speed) ease;
+        }
+        .job:last-child, .education-entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .job-title, .degree {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .company, .institution {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .date {
+            font-style: italic;
+            font-size: 0.9em;
+            color: var(--secondary-color);
+        }
+
+        .job ul, .education-entry ul {
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.6em; }
+            .container { padding: 15px; }
+            section { padding: 20px; }
+             nav ul { flex-direction: column; align-items: center; }
+             nav li { margin: 8px 0; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.4em; }
+            body { font-size: 15px; }
+            #skills ul { columns: 1; -webkit-columns: 1; -moz-columns: 1; } /* Single column for skills on small screens */
+            .theme-toggle { top: 10px; right: 10px; padding: 6px 8px; font-size: 0.8em; }
+            .main-header { padding: 20px 15px; }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <button id="theme-toggle" class="theme-toggle">Toggle Theme</button>
+            <h1>Vincent Divine</h1>
+            <div class="contact-info">
+                <span>Awka, Anambra State</span>
+                <span>+2347018038113</span>
+                <span><a href="mailto:vincentdivine405@gmail.com">vincentdivine405@gmail.com</a></span>
+                <span>
+                    <a href="https://linkedin.com/in/vincci113" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+                    <a href="https://behance.net/vincentdivine1" target="_blank" rel="noopener noreferrer">Behance Portfolio</a>
+                </span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="about">
+                <h2>Professional Summary</h2>
+                <p>
+                    Creative and results-driven Graphics Designer and Video Editor with 4 years of graphic design and 3 years of video editing experience. Adept at producing compelling visuals and engaging video content using industry-standard software (Adobe Creative Suite, CorelDRAW, Filmora). Passionate educator with proven success in tutoring students in design principles, software proficiency, and video editing techniques at Kass Communications Institute. Seeking opportunities to leverage design, editing, and instructional expertise in a challenging tutoring or creative role.
+                </p>
+            </section>
+
+            <section id="skills">
+                <h2>Skills</h2>
+                <ul>
+                    <li>Adobe Photoshop</li>
+                    <li>Adobe Illustrator</li>
+                    <li>CorelDRAW</li>
+                    <li>Typography</li>
+                    <li>Color Theory</li>
+                    <li>Layout & Composition</li>
+                    <li>Logo Design</li>
+                    <li>Branding Identity</li>
+                    <li>Photo Editing & Retouching</li>
+                    <li>Adobe Premiere Pro</li>
+                    <li>Wondershare Filmora</li>
+                    <li>Video Storytelling & Pacing</li>
+                    <li>Transitions & Effects</li>
+                    <li>Color Correction & Grading</li>
+                    <li>Audio Mixing (Basic)</li>
+                    <li>Motion Graphics (Basic)</li>
+                    <li>Curriculum Development (Basic)</li>
+                    <li>Lesson Planning</li>
+                    <li>Student Assessment & Feedback</li>
+                    <li>Software Training</li>
+                    <li>Creative Mentorship</li>
+                    <li>Data Entry & Analysis</li>
+                    <li>Digital File Management</li>
+                    <li>PC Proficiency (Windows)</li>
+                    <li>Creativity</li>
+                    <li>Communication (Verbal & Written)</li>
+                    <li>Patience</li>
+                    <li>Adaptability</li>
+                    <li>Problem-Solving</li>
+                    <li>Attention to Detail</li>
+                    <li>Time Management</li>
+                    <li>Client Communication (Freelance)</li>
+                </ul>
+            </section>
+
+            <section id="experience">
+                <h2>Work Experience</h2>
+
+                <div class="job">
+                    <h3 class="job-title">Freelance Video Editor</h3>
+                    <p class="company">Self-Employed</p>
+                    <p class="location">Remote</p>
+                    <p class="date">2022 – Present</p>
+                    <ul>
+                        <li>Edited raw video footage into polished, engaging content for diverse clients and projects (e.g., promotional materials, tutorials, social media clips).</li>
+                        <li>Utilized Adobe Premiere Pro and Wondershare Filmora for comprehensive editing, including cuts, transitions, pacing refinement, and applying visual effects.</li>
+                        <li>Integrated motion graphics, text overlays, background music, and sound effects to enhance narrative flow and viewer engagement.</li>
+                        <li>Performed color correction and grading to ensure visual consistency, mood setting, and professional aesthetic appeal across all projects.</li>
+                        <li>Managed project timelines effectively, communicating clearly with clients to understand requirements and deliver final videos meeting or exceeding expectations.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                     <h3 class="job-title">Graphics Design Tutor</h3>
+                     <p class="company">Kass Communications Institute</p>
+                     <p class="location">Ojo, Lagos State</p>
+                     <p class="date">2021 – 2024</p>
+                     <ul>
+                         <li>Instructed students in fundamental and advanced graphic design principles, covering typography, color theory, layout, composition, and branding concepts.</li>
+                         <li>Provided comprehensive, hands-on training on industry-standard software: Adobe Photoshop, Adobe Illustrator, and CorelDRAW.</li>
+                         <li>Developed and delivered engaging lesson plans, practical assignments, and creative projects designed to foster skill development and build student portfolios.</li>
+                         <li>Evaluated student progress through project reviews and practical assessments, offering constructive feedback to guide improvement and enhance design capabilities.</li>
+                         <li>Mentored aspiring designers on industry best practices, portfolio creation, and foundational knowledge required for entry-level creative roles.</li>
+                     </ul>
+                </div>
+            </section>
+
+            <section id="education">
+                <h2>Education</h2>
+
+                <div class="education-entry">
+                    <h3 class="degree">Higher Diploma in Graphics Design, Photoediting, and Video Editing</h3>
+                    <p class="institution">Kass Communications Institute</p>
+                    <p class="location">Ojo, Lagos State</p>
+                    <p class="date">2019 – 2020</p>
+                </div>
+
+                <div class="education-entry">
+                    <h3 class="degree">Diploma in Data Entry and Analysis</h3>
+                    <p class="institution">Oshabat Computer Institute</p>
+                    <p class="location">Iyana-School, Ojo, Lagos State</p>
+                    <p class="date">2018 – 2019</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; <span id="current-year"></span> Vincent Divine. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const body = document.body;
+            const currentYearSpan = document.getElementById('current-year');
+
+            // Set current year in footer
+            currentYearSpan.textContent = new Date().getFullYear();
+
+            // Function to apply the saved theme or default to light
+            const applyTheme = () => {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark') {
+                    body.classList.add('dark-mode');
+                    themeToggleBtn.textContent = 'Light Mode';
+                } else {
+                    body.classList.remove('dark-mode');
+                    themeToggleBtn.textContent = 'Dark Mode';
+                }
+            };
+
+            // Theme Toggle Button Event Listener
+            themeToggleBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                let theme = 'light';
+                if (body.classList.contains('dark-mode')) {
+                    theme = 'dark';
+                    themeToggleBtn.textContent = 'Light Mode';
+                } else {
+                     themeToggleBtn.textContent = 'Dark Mode';
+                }
+                // Save the user's preference to localStorage
+                localStorage.setItem('theme', theme);
+            });
+
+             // --- Smooth Scrolling for Nav Links ---
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent the default anchor jump
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        // Calculate position to scroll to (consider header height if fixed)
+                        // For now, simple scrollIntoView
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start' // Aligns the top of the target element to the top of the viewport
+                        });
+                    }
+                });
+            });
+
+
+            // Apply the theme on initial load
+            applyTheme();
+        });
+    </script>
+</body>
+</html>
